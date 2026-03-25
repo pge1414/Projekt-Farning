@@ -15,7 +15,7 @@ def print_square(num):
 
 if __name__ == "__main__":
     # creating processes
-    for i in range(5):
+    for i in range(2):
          p1 = multiprocessing.Process(target=print_square, args=(i, ))
          p2 = multiprocessing.Process(target=print_cube, args=(i, ))
 
