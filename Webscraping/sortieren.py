@@ -1,15 +1,15 @@
 import json
 
 anzahlen = {}
-wörter = {}
+wörter = []
 
-with open("found_words.json", "r") as f:
-    wörter = json.load(f)
+with open('found_words.json', 'r') as f:
+    for line in f:
+        for i in json.loads(line).values():
+            wörter.append(i)
 
-for i in wörter.values():
-    i.sort()
-    for j in i:
-        if line.strip()
-        anzahlen[j] = anzahlen.get(j, 0) + 1
-
+flat_list = [item for sublist in wörter for item in sublist]
+anzahlen = {i: flat_list.count(i) for i in set(flat_list)}
+anzahlen = dict(sorted(anzahlen.items(), key=lambda item: item[1]))
 print(anzahlen)
+print(max(anzahlen, key=anzahlen.get))
