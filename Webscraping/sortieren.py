@@ -26,9 +26,9 @@ for word in tqdm.tqdm(anzahlen.keys(), desc="Verarbeitung läuft"):
         synonyme = duden.get(word).synonyms
         if synonyme:
             for synonym in synonyme:
-                if synonym in flat_list:
+                if synonym in anzahlen.keys():
                     anzahlen[word] += anzahlen[synonym]
-                    anzahlen.remove(synonym)
+                    del anzahlen[synonym]
                     time.sleep(0.1)
 print(anzahlen)
 print(len(anzahlen))
