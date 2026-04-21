@@ -3,6 +3,8 @@ import duden
 import time, tqdm
 from collections import deque
 
+// TODO: - ausreizen wie viele wörter man durchlaufen kann, duden abbricht - gerade 86
+
 anzahlen = {}
 wörter = []
 
