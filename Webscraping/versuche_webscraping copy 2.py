@@ -97,11 +97,29 @@ def links_aufrufen(url):
 
 if __name__ == "__main__":
     url_aus_csv()
-    for element in tqdm.tqdm(url, desc="Verarbeitung läuft"):
-        p1 = multiprocessing.Process(target=links_aufrufen, args=(element,))
-        p2 = multiprocessing.Process(target=scrape_link, args=(element,))
+    for i in tqdm.tqdm(range(1, len(url), 2), desc="Verarbeitung läuft"):
+
+        p1 = multiprocessing.Process(target=links_aufrufen, args=(url[i],))
+        p2 = multiprocessing.Process(target=links_aufrufen, args=(url[i-1],))
+        p3 = multiprocessing.Process(target=scrape_link, args=(url[i],))
+        p4 = multiprocessing.Process(target=scrape_link, args=(url[i-1],))
         p1.start()
         p2.start()
+        p3.start()
+        p4.start()
         p1.join()
         p2.join()
+        p3.join()
+        p4.join()
 
+# from tqdm import tqdm
+
+# liste = ["A", "B", "C", "D", "E", "F", "G", "H", "I"]
+# ergebnis = []
+
+# # Start bei Index 3 ("D"), Schrittweite 4
+# for i in tqdm(range(3, len(liste), 4), desc="Extrahiere"):
+#     ergebnis.append(liste[i])
+
+# print(ergebnis)
+# # Ausgabe: ['D', 'H'] -> für 16 statt 4
