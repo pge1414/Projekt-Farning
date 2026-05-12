@@ -96,7 +96,7 @@ def scrape_link(urlf):
             spamwriter.writerow(links)
 
 scrape_link("https://www.handelsblatt.com")
-scrape_link("https://www.faz.net")
+scrape_link("https://www.welt.de")
 
 def links_aufrufen(url):
     wörter = []
