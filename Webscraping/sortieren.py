@@ -34,7 +34,7 @@ flat_list = [item.lower() for item in flat_list]
 anzahlen = {i: flat_list.count(i) for i in tqdm.tqdm(set(flat_list), desc="Anzahlen werden berechnet")}
 
 anzahlen = dict(sorted(anzahlen.items(), key=lambda item: item[1]))
-letzte_elemente = deque(anzahlen.items(), maxlen=100)
+letzte_elemente = deque(anzahlen.items(), maxlen=110)
 anzahlen = dict(letzte_elemente)
 print(anzahlen)
 print(len(anzahlen))

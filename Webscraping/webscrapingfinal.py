@@ -35,6 +35,7 @@ def linkchecker(urlf):
 
 
 def url_aus_csv():
+    url.clear()
     with open('links.csv', newline='') as csvfile:
         spamreader = csv.reader(csvfile, delimiter=' ', quotechar='|')
         for row in spamreader:
@@ -95,7 +96,7 @@ def scrape_link(urlf):
             spamwriter.writerow(links)
 
 scrape_link("https://www.handelsblatt.com")
-#
+scrape_link("https://www.faz.net")
 
 def links_aufrufen(url):
     wörter = []
@@ -116,34 +117,37 @@ def links_aufrufen(url):
 
 if __name__ == "__main__":
     url_aus_csv()
-    for i in tqdm.tqdm(range(3, len(url), 4), desc="Verarbeitung läuft"):
+    for i in range(10):
+        for i in tqdm.tqdm(range(3, len(url), 4), desc="Verarbeitung läuft"):
 
-        p1 = multiprocessing.Process(target=links_aufrufen, args=(url[i],))
-        p2 = multiprocessing.Process(target=links_aufrufen, args=(url[i-1],))
-        p3 = multiprocessing.Process(target=links_aufrufen, args=(url[i-2],))
-        p4 = multiprocessing.Process(target=links_aufrufen, args=(url[i-3],))
-        p5 = multiprocessing.Process(target=scrape_link, args=(url[i],))
-        p6 = multiprocessing.Process(target=scrape_link, args=(url[i-1],))
-        p7 = multiprocessing.Process(target=scrape_link, args=(url[i-2],))
-        p8 = multiprocessing.Process(target=scrape_link, args=(url[i-3],))
-        p1.start()
-        p2.start()
-        p3.start()
-        p4.start()
-        p5.start()
-        p6.start()
-        p7.start()
-        p8.start()
+            p1 = multiprocessing.Process(target=links_aufrufen, args=(url[i],))
+            p2 = multiprocessing.Process(target=links_aufrufen, args=(url[i-1],))
+            p3 = multiprocessing.Process(target=links_aufrufen, args=(url[i-2],))
+            p4 = multiprocessing.Process(target=links_aufrufen, args=(url[i-3],))
+            p5 = multiprocessing.Process(target=scrape_link, args=(url[i],))
+            p6 = multiprocessing.Process(target=scrape_link, args=(url[i-1],))
+            p7 = multiprocessing.Process(target=scrape_link, args=(url[i-2],))
+            p8 = multiprocessing.Process(target=scrape_link, args=(url[i-3],))
+            p1.start()
+            p2.start()
+            p3.start()
+            p4.start()
+            p5.start()
+            p6.start()
+            p7.start()
+            p8.start()
 
-        p1.join()
-        p2.join()
-        p3.join()
-        p4.join()
-        p5.join()
-        p6.join()
-        p7.join()
-        p8.join()
-    url_sortieren()
+            p1.join()
+            p2.join()
+            p3.join()
+            p4.join()
+            p5.join()
+            p6.join()
+            p7.join()
+            p8.join()
+        url_sortieren()
+        url_aus_csv()
+    print("Done!")
 
 # from tqdm import tqdm
 
