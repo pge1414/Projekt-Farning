@@ -22,7 +22,7 @@ def get_performance(ticker_symbol, start_date, end_date):
 
 with open("indexe.json", "r") as f:
     for i in json.loads(f).values():
-            wörter.append(str(i))
+            wörter.append(i)
 
 
 for w in tqdm.tqdm(wörter, desc="Verarbeitung läuft"):
