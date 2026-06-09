@@ -14,8 +14,12 @@ for i in k.values():
     wörter.append(i)
 print(wörter)
 
+a = "Siemens"
+
 with open("indexe.json", "r") as f:
-    print(f.read())
+    data = json.loads(f.read())
+    if a in data:
+        print(data[a])
     # data = json.load(f)
     # for i in data.values():
     #     wörter.append(i)
